@@ -4,7 +4,7 @@
 #include <net/if.h>
 #include <unistd.h>
 
-#define NET_INTERFACE "wlp0s20f3"
+#define NET_INTERFACE "your_net_interface_name"
 
 int main() {
     
@@ -46,8 +46,6 @@ int main() {
     int igr_prog_fd = bpf_program__fd(bpf_prog_igr);
     if (!igr_prog_fd)
         printf("cannot find the program\n");
-
-    //printf("id = %d\n", igr_prog_fd);
 
     struct bpf_tc_hook igr_hook = {0};
 
@@ -102,7 +100,7 @@ int main() {
 
     
     int c = 0;
-    printf("Enter anything to quit: ");
+    printf("Enter anything and press enter to quit: ");
     scanf("%d", &c);
     if (c)
         goto terminate;
