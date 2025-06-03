@@ -48,16 +48,13 @@ int main() {
         printf("cannot find the program\n");
 
     struct bpf_tc_hook igr_hook = {0};
-
     igr_hook.sz = sizeof(struct bpf_tc_hook),
     igr_hook.ifindex = if_nametoindex(NET_INTERFACE),
     igr_hook.attach_point = BPF_TC_INGRESS,
     
-
     bpf_tc_hook_create(&igr_hook);
 
     struct bpf_tc_opts igr_opts = {0};
-
     igr_opts.sz = sizeof(struct bpf_tc_opts),
     igr_opts.prog_fd = igr_prog_fd,
     igr_opts.prog_id = 0,
@@ -74,19 +71,14 @@ int main() {
     if (!egr_prog_fd)
         printf("cannot find the program\n");
 
-    printf("id = %d\n", egr_prog_fd);
-
     struct bpf_tc_hook egr_hook = {0};
-
     egr_hook.sz = sizeof(struct bpf_tc_hook),
     egr_hook.ifindex = if_nametoindex(NET_INTERFACE),
     egr_hook.attach_point = BPF_TC_EGRESS,
     
-
     bpf_tc_hook_create(&egr_hook);
 
     struct bpf_tc_opts egr_opts = {0};
-
     egr_opts.sz = sizeof(struct bpf_tc_opts),
     egr_opts.prog_fd = egr_prog_fd,
     egr_opts.prog_id = 0,
