@@ -76,7 +76,6 @@ int egress_traffic(struct __sk_buff *skb) {
     struct ethhdr *eth = data;
     __u64 conn_idnt = 0;
     __u64 dest_p = 0;
-    __u8 err;
     __u64 *timestamp, k_timestamp, delay;
     __u8 protocol;
 
