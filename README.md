@@ -48,3 +48,10 @@ To see the trace output (latency logs), in a separate terminal run:
 libbpf: Kernel error message: Exclusivity flag on, cannot modify
 ```
 This can be safely ignored. It does not affect functionality.
+
+📌 **Important Note**
+
+This tool provides statistical insights into packet processing delays, rather than exact per-packet tracing.
+It identifies packets using IP address and port information only, not unique packet identifiers. As a result, measurements may include approximation or overlap between different packets sharing the same source IP address and port number (especially under high throughput or connection reuse).
+
+The goal is to offer a lightweight, low-overhead view of network processing behavior across the system, suitable for performance tuning and general latency profiling — not for precise, per-packet tracking.
