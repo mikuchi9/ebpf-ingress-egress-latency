@@ -42,7 +42,7 @@ int ingress_traffic(struct __sk_buff *skb) {
     protocol = iph->protocol;
     
     if (protocol == IPPROTO_TCP) {
-        struct tcphdr *tcph = (void *)iph + sizeof(struct tcphdr);
+        struct tcphdr *tcph = (void *)iph + sizeof(struct iphdr);
         if ((void *)tcph + sizeof(struct tcphdr) > data_end)
             return TC_ACT_OK;
         
@@ -50,7 +50,7 @@ int ingress_traffic(struct __sk_buff *skb) {
     }        
         
     if (protocol == IPPROTO_UDP) {
-        struct udphdr *udph = (void *)iph + sizeof(struct udphdr);
+        struct udphdr *udph = (void *)iph + sizeof(struct iphdr);
         if ((void *)udph + sizeof(struct udphdr) > data_end)
             return TC_ACT_OK;
 
@@ -90,7 +90,7 @@ int egress_traffic(struct __sk_buff *skb) {
     protocol = iph->protocol;
         
     if (protocol == IPPROTO_TCP) {
-        struct tcphdr *tcph = (void *)iph + sizeof(struct tcphdr);
+        struct tcphdr *tcph = (void *)iph + sizeof(struct iphdr);
         if ((void *)tcph + sizeof(struct tcphdr) > data_end)
             return TC_ACT_OK;
             
@@ -98,7 +98,7 @@ int egress_traffic(struct __sk_buff *skb) {
     }
 
     if (protocol == IPPROTO_UDP) {
-        struct udphdr *udph = (void *)iph + sizeof(struct udphdr);
+        struct udphdr *udph = (void *)iph + sizeof(struct iphdr);
         if ((void *)udph + sizeof(struct udphdr) > data_end)
             return TC_ACT_OK;
         
