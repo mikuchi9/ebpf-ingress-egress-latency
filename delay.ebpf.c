@@ -40,10 +40,7 @@ int ingress_traffic(struct __sk_buff *skb) {
         return TC_ACT_OK;
 
     protocol = iph->protocol;
-    // the internal delay only for IPV4 packets
-    if (protocol == IPPROTO_IPV6)
-        return TC_ACT_OK;
-        
+    
     if (protocol == IPPROTO_TCP) {
         struct tcphdr *tcph = (void *)iph + sizeof(struct tcphdr);
         if ((void *)tcph + sizeof(struct tcphdr) > data_end)
@@ -91,9 +88,6 @@ int egress_traffic(struct __sk_buff *skb) {
         return TC_ACT_OK;
 
     protocol = iph->protocol;
-    
-    if (protocol == IPPROTO_IPV6)
-        return TC_ACT_OK;
         
     if (protocol == IPPROTO_TCP) {
         struct tcphdr *tcph = (void *)iph + sizeof(struct tcphdr);
